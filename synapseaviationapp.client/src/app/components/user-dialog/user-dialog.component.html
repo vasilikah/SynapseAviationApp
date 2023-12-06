@@ -1,0 +1,33 @@
+<form [formGroup]="userForm">
+  <div class="dialog-container">
+    <h2>Edit User Details</h2>
+    <div class="dialog-content">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" [(ngModel)]="user.firstName" formControlName="firstName">
+      <div *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched">
+        <span *ngIf="userForm.get('firstName')?.errors?.['required']" class="error-text">First Name is required.</span>
+      </div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" [(ngModel)]="user.lastName" formControlName="lastName">
+      <div *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched">
+        <span *ngIf="userForm.get('lastName')?.errors?.['required']" class="error-text">Last Name is required.</span>
+      </div>
+      <label for="lastName">Age:</label>
+      <input type="text" id="age" [(ngModel)]="user.age" formControlName="age" minlength="1" maxlength="3">
+      <div *ngIf="userForm.controls['age'].invalid && userForm.controls['age'].touched">
+        <span *ngIf="userForm.get('age')?.errors?.['required']" class="error-text">Age is required.</span>
+        <span *ngIf="userForm.get('age')?.errors?.['max'] || userForm.get('age')?.errors?.['maxAgeExceeded']" class="error-text">
+          Age must be between 0 and 120.
+        </span>
+      </div>
+    </div>
+    <div class="dialog-actions">
+      <div class="button-container">
+        <button mat-button (click)="onCancel()">Cancel</button>
+      </div>
+      <div class="button-container">
+        <button mat-button (click)="onSave()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+  </form>

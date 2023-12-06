@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Users Data</h2>
+  <app-search-filter (searchEvent)="applyFilter($event)"></app-search-filter>
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortByFirstName()">First Name &#8593;&#8595;</th>
+        <th>Last Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers" (click)="openDialog(user)">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.age }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
